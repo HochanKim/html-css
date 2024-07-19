@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label>이름 : <input type="text" placeholder="아이디 입력">text</label><br>
+    <input type="password" placeholder="비밀번호">비밀번호<br>
+    <input type="button" value="클릭"><br>
+    <input type="number"><br>
+    <input type="file"><br>
+    <input type="email"><br>
+    <input type="date" min="2023-01-01" max="2024-12-31"><br>
+    <input type="datetime-local">
+    <hr>
+    <label> <!-- 안내문구, 글자를 눌러도 체크가 가능하도록 하는 태그-->
+        <input type="checkbox" value="java" checked> 자바
+    </label>
+    <input type="checkbox" value="oracle"> 오라클
+    <input type="checkbox" value="html"> html
+    <br><hr>
+    <label> <!-- 'name'으로 그룹을 묶어서 radio버튼의 중복을 막는다 -->
+        <input type="radio" name="subject" value="java" checked> 자바
+    </label>
+    <label>
+        <input type="radio" name="subject" value="oracle"> 오라클
+    </label>
+    <label>
+        <input type="radio" name="subject" value="html"> html
+    </label>
+    <br><hr>
+    <br><hr>
+    <label> <!-- 'name' 예시 -->
+        <input type="radio" name="gender" value="m"> 남
+    </label>
+    <label>
+        <input type="radio" name="gender" value="f"> 여
+    </label>
+</body>
+</html>

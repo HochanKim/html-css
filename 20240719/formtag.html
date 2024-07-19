@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="input01.html">
+        <fieldset>
+            <legend>회원가입</legend>
+            <div>
+                <label>아 이 디 : <input type="text" name="userid"></label>
+            </div>
+            <div>
+                <label>비밀번호 : <input type="password" name="pwd"></label>
+            </div>
+            <div>
+                <label>이름 : <input type="text" name="name"></label>
+            </div>
+            <div>
+                <input type="radio" name="hobby" value="gaming" > 게임
+                <input type="radio" name="hobby" value="reading" > 독서
+                <input type="radio" name="hobby" value="coding" > 코딩
+                <input type="radio" name="hobby" value="movie" > 영화감상
+            </div>
+            <div>
+                <select>
+                    <option value="10">10대</option>
+                    <option value="20">20대</option>
+                    <option value="30">30대</option>
+                    <option value="40">40대</option>
+                    <option value="50">50대</option>
+                    <option value="60">60대 이상</option>
+                </select>
+            </div>
+            <div>
+                <label>자기소개 : </label>
+                <textarea cols="50" rows="10"></textarea>
+            </div>
+            <button>버튼태그</button>
+            <input type="reset" value="초기화">
+            <input type="submit" value="가입하기">
+        </fieldset>
+    </form>
+</body>
+</html>
