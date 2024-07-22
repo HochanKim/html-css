@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<title>온라인 프로필</title>
+	<meta charset="utf-8">
+  <style>
+    /* 기본 스타일 */
+    table {
+      width:70%; 
+      border:1px solid #222; 
+      border-collapse: collapse; 
+      margin-left: 55px;
+    }
+    thead {
+      background:#eee;  
+    }
+    th, td {
+      border:1px solid #ccc; 
+      padding:5px;  
+      font-size:0.8em; 
+    }
+
+    #container {
+       width:1400px;
+       margin:0px auto;
+    }
+
+    /* 사이드바 */
+    aside {
+       width:26%;
+       height:1000px;
+       float: left;
+       background-color: dodgerblue;
+       box-sizing: border-box;
+       padding:0 60px;
+    }
+    h1 {
+       text-transform: uppercase;
+    }
+    h1>span {
+       font-size:30px;
+    }
+    #namecard {
+       margin: 20px 20px 100px 20px;
+    }
+    .pic img {
+       display: inline-block;
+       width:200px;
+       height:340px;
+    }
+    #detail, #sns {
+       margin:auto 20px;
+    }
+    #sns {
+       padding-top : 60px;
+    }
+    #sns h3 a {
+        color:crimson;
+        text-decoration: none;
+    }
+    a:hover {
+        font-size: 24px;
+        transition: 0.3s;
+        background-color: yellow;
+        border-radius: 20px;
+    }
+
+    /* 메인 섹션 */
+    #main {
+       float:left;
+       width:74%;
+       height:1000px;
+       background-color: azure;
+    }
+    section {
+       width:90%;
+       padding-bottom:20px;
+       border-bottom:1px dashed black;
+       margin:0 auto;
+       box-sizing: border-box;
+       padding-left:50px;
+       line-height:30px;
+    }
+    .introduce > p {
+       padding-left:50px;
+    }
+
+    /* 경력 */
+    .subtitle {
+       padding-left:45px;
+    }
+  </style>
+</head>
+
+<body>
+    <div id="container">
+        <!-- 사이드바 -->
+        <aside>
+            <div id="namecard">
+                <div class="pic">
+                    <img src="../20240718/images/flower.jpg" alt="">
+                </div>
+                <h1><span>k</span>im <span>h</span>ochan</h1>    
+                <p>프로그래밍 재밌다</p>
+            </div>
+            <div id="detail">
+                <p>Incheon, Korea</p>
+                <p>ghckskim@naver.com</p>                                 
+            </div>
+            <div id="sns">
+                <h2>SNS</h2>
+                <h3><a href="#https://github.com/HochanKim">Github</a></h3>
+            </div>           
+        </aside>
+        <div id="main">
+            <section class="introduce">
+                <h2 class="subtitle">자기소개</h2>
+                <p><mark>프로그래밍</mark>에 관심이 많습니다. <br>현재 열심히 공부하며 코딩 중!</p>
+            </section>
+
+            <!-- 경력 -->
+            <section>
+                <h2 class="subtitle">Experience</h2>
+                <ul>
+                    <li>프론트엔드
+                        <ul>
+                            <li>HTML/CSS/JAVASCRIPT </li>
+                            <li>웹 페이지 잘 만든다 </li>
+                            <li>다 잘함</li> 
+                        </ul>
+                    </li>
+                    <li>백엔드
+                        <ul>
+                            <li>자바 잘함 </li>
+                            <li>오라클 더 잘함</li>
+                        </ul>                        
+                    </li>
+                </ul>             
+            </section>
+
+            <!-- 숙련도 -->
+            <section>
+                <h2 class="subtitle">보유 기술</h2>
+                <li style="list-style: none;"> 
+                    <ul>
+                        <li>자바 </li>
+                        <li>오라클</li>
+                    </ul>                        
+                </li>
+            </section>
+
+            <!-- 학력 -->
+            <section>
+                <h2 class="subtitle">Education</h2>
+                <table>
+                  <caption>학력 사항</caption>
+                  <thead>
+                      <tr>
+                          <th>출신학교</th>
+                          <th>전공</th>
+                          <th>기간</th>
+                          <th>구분</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td>좋은대학교</td>
+                          <td>좋은학과</td>
+                          <td>2010.3 ~ 2013.2</td>
+                          <td>졸업</td>
+                      </tr>
+                      <tr>
+                          <td>인천 꽤좋은고등학교</td>
+                          <td> - </td>
+                          <td>2009.3 ~ 2012.2</td>
+                          <td>졸업</td>
+                      </tr>
+                  </tbody>
+                </table>
+            </section>
+        </div>        
+    </div>
+</body>
+</html>

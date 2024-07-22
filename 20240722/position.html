@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            width: 300px;
+            height: 400px;
+            background-color: #eee;
+        }
+        .box1 {
+            width: 150px;
+            height: 100px;
+            background-color: aqua;
+        }
+        .box2 {
+            width: 150px;
+            height: 100px;
+            background-color: darksalmon;
+            position: relative;
+            top:20px;
+            left:20px;
+        }
+        .abs {
+            position: absolute;
+            top:10px;
+            left:10px;
+        }
+        .fix {
+            position: fixed;
+            right:30px;
+            top:30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="box1"></div>
+        <div class="box2">
+            <div class="box1 abs"></div>
+        </div>
+    </div>
+    <div class="box1 fix"></div>
+    <div style="margin-top:2000px;"></div>
+</body>
+</html>
