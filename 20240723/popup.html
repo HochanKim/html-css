@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="pageMove()">페이지 이동</button>
+    <button onclick="popUp()">팝업창</button>
+    <button onclick="pageClose()">페이지 닫기</button>
+</body>
+</html>
+<script>
+    function pageMove() {
+        // 자바스크립트 객체 location (다른 페이지 이동)
+        location.href = "http://192.168.30.175:5500/20240723/practice03.html";
+    }
+
+    function pageClose() {
+        // 자바스크립트 객체 window ()
+        close();
+    }
+
+    function popUp() {
+        // 자바스크립트 객체 window ()
+        window.open("practice03.html", "", "width=500, height=500, left=200, top=200");
+    }
+</script>

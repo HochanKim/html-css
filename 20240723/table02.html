@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            /* caption-side: bottom; */
+            /* border-style: solid;
+            border-color: blue;
+            border-width: 10px; */
+            border : 1px solid #000; /*border : width style color*/
+            border-collapse: collapse;
+        }
+        td, th {
+            padding: 20px 30px;
+            /* padding: 5px 10px 15px 20px; => padding : 상 좌 하 우*/
+            text-align: center;
+            border : 1px solid #000; /*border : width style color*/
+        }
+        .back-color {
+            background-color: #eee;
+        }
+        tr:nth-of-type(2n) { 
+            /* odd(2n+1), even(2n) */
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body>
+    <table border="1">
+        <caption>시험성적</caption>
+        <!-- 컬럼에 스타일 일괄적용-->
+        <col class="back-color"></col>
+        <col></col>
+        <col></col>
+        <col></col>
+        <tr class="back-color">
+            <th>이름</th>
+            <th>자바</th>
+            <th>오라클</th>
+            <th>html</th>
+        </tr>
+        <tr>
+            <td>홍길동</td>
+            <td>30</td>
+            <td>50</td>
+            <td>80</td>
+        </tr>   
+        <tr>
+            <td>김철수</td>
+            <td>80</td>
+            <td>80</td>
+            <td>80</td>
+        </tr>
+        <tr>
+            <td>박영희</td>
+            <td>90</td>
+            <td>90</td>
+            <td>85</td>
+        </tr>
+        <tr>
+            <td>홍길동</td>
+            <td>30</td>
+            <td>50</td>
+            <td>80</td>
+        </tr>   
+        <tr>
+            <td>김철수</td>
+            <td>80</td>
+            <td>80</td>
+            <td>80</td>
+        </tr>
+        <tr>
+            <td>박영희</td>
+            <td>90</td>
+            <td>90</td>
+            <td>85</td>
+        </tr>
+    </table>
+</body>
+</html>

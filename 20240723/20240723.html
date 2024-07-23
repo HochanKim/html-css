@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form {
+            width:50%;
+            margin:0 auto;
+        }
+        fieldset {
+            margin-bottom:30px;
+            box-sizing: border-box;
+            padding : 12px 10%;
+            border: 1px solid #ddd
+        }
+        legend {
+            font-weight: bold;
+            font-size:20px;
+        }
+
+        fieldset > ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        fieldset > ul > li {
+            margin:10px 0;
+        }
+
+        .right-txt{
+            float: right;
+        }
+
+        fieldset > ul > li {
+            height:40px;
+        }
+
+        fieldset > ul > li > input {
+            width:50%;
+            height: 60%;
+            border:1px solid red;
+        }
+        
+        .unjoin {
+            padding-right:40%;
+        }
+
+        .btn {
+            text-align: center;
+        }
+        #submit {
+            width:100px;
+            height:30px;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- <h1>회원가입을 환영합니다.</h1> -->
+    <form action="">
+        <fieldset>
+            <legend>로그인 정보</legend>
+            <ul>
+                <li>
+                    아이디 
+                    <input type="text" class="right-txt">
+                </li>
+                <li>
+                    비밀번호 
+                    <input type="password" class="right-txt">
+                </li>
+                <li>
+                    비밀번호 확인 
+                    <input type="password" class="right-txt">
+                </li>
+                <li class="unjoin">
+                    <span>회원 등급</span>
+                    <span class="right-txt">준회원</span>
+                </li>
+            </ul>
+        </fieldset>
+        <fieldset>
+            <legend>개인 정보</legend>
+            <ul>
+                <li>
+                    이름
+                    <input type="text" placeholder="5자미만 공백없이" class="right-txt">
+                </li>
+                <li>
+                    메일 주소 
+                    <input type="email" placeholder="abcd@domain.com" class="right-txt">
+                </li>
+                <li>
+                    연락처
+                    <input type="text" class="right-txt">
+                </li>
+            </ul>
+        </fieldset>
+        <div class="btn">
+            <input type="submit" value="제출" id="submit">
+        </div>
+    </form>
+</body>
+</html>
+<script>
+    
+</script>

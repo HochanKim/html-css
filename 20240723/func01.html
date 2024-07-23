@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body> 
+    <button onclick="event1(3)">클릭!</button>
+</body>
+</html>
+<script>
+    function event1(num) {  // 자바스크립트는 자바와 다르게 매개변수에 타입을 생략한다.
+        for(let i=1; i<10; i++){
+            document.write(num + "*" + i + "=" + (num*i) + "<br>");
+        }
+    }
+
+    function event2(x, y) {
+        return x+y;
+    }
+    var num = event2(10, 20);
+    console.log(num);
+</script>

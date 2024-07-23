@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="../20240718/images/bootggot.jpg" id="img1">
+</body>
+</html>
+<script>
+    var obj = document.querySelector("#img1");
+    // obj.onclick = function(){
+    //     // 클릭시, 해당 함수에 넣은 값을 실행
+    //     alert("하이!");
+    // }
+
+    obj.onclick = function(e){
+        // obj.src = "../20240718/images/flower.jpg";
+        // // document.getElementById("img1").src = "../20240718/images/flower.jpg";
+        // console.log("이벤트 유형 ===>", e.type);    // 해당 함수의 이벤트 타입이 콘솔로 호출
+        // console.log("x 위치", e.pageX);
+        // console.log("y 위치", e.pageY);
+    }
+
+    // obj.addEventListener("mouseover", function(){alert("test")});     // 이벤트 리스너 부착 (익명함수)
+
+    obj.addEventListener("mouseover", () => {
+        obj.src = "../20240718/images/flower.jpg"    
+    });     // 화살표 함수
+
+    obj.addEventListener("mouseout", () => {
+        obj.src = "../20240718/images/bootggot.jpg"    
+    });
+
+    // obj.addEventListener("mouseover", test);     // 이벤트 리스너 부착
+
+    // function test() {
+    //    alert("test");
+    // }
+</script>

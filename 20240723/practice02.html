@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input placeholder="첫번째 숫자" id="num1">
+    <input placeholder="두번째 숫자" id="num2">
+    <button onclick="sumNum()">더하기</button>
+    <div id="result"></div>
+</body>
+</html>
+<script>
+    function sumNum() {
+        var item = document.querySelector("#result");
+        console.log(item.innerHTML);
+        var num1 = parseInt(document.querySelector("#num1").value);   // 첫 번째 인풋의 value에 담긴 값 가져오기, parseInt() : 문자를 숫자타입으로 형변환
+        var num2 = parseInt(document.querySelector("#num2").value);   // 두 번째 인풋의 value에 담긴 값 가져오기
+        item.innerHTML = "<h3>" + (num1 + num2) + "</h3>";
+        // item.innerText = "<h3>" + (num1 + num2) + "</h3>"; => 태그도 출력됨
+    }
+</script>

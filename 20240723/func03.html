@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <button onclick="colorTagName()">TagName</button>
+        <button onclick="colorClassName()">ClassName</button>
+        <button onclick="colorQuery1()">Query1</button>
+        <button onclick="colorQuery2()">Query2</button>
+    </div>
+    <p class="back-yellow">과목 목록</p>
+    <ul>
+        <li>자바</li>
+        <li>오라클</li>
+        <li class="back-yellow">html</li>
+        <li>css</li>
+        <li>javascript</li>
+    </ul>
+</body>
+</html>
+<script>
+    function colorTagName() {
+        var list = document.getElementsByTagName("li");
+        for(var i=0; i<list.length; i++) {
+            list.item(i).style.color = "red";
+        }
+    }
+    function colorClassName() {
+        var list = document.getElementsByClassName("back-yellow");
+        for(var i=0; i<list.length; i++) {
+            list.item(i).style.backgroundColor = "yellow";
+        }
+    }
+    function colorQuery1() {
+        var item = document.querySelector("p");
+        item.style.color = "blue";
+    }
+    function colorQuery2() {
+        var list = document.querySelectorAll("li");
+        for(var i=0; i<list.length; i++) {
+            list.item(i).style.backgroundColor = "#ccc";
+        }
+    }
+</script>

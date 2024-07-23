@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1, .box2 {
+            box-sizing: border-box;
+            width: 200px;
+            height: 200px;
+            background-color: cyan;
+            text-align: center;
+            line-height: 200px;
+            padding: 20px;
+            border: 10px solid crimson;
+            margin:40px 0;
+        }
+        .shadow1 {
+            box-shadow: 5px 5px 5px 5px;
+        }
+        .shadow2 {
+            border: 10px solid blue;
+            box-shadow: 5px 5px 5px 5px red;
+        }
+
+        div[class ~= "box1"] {
+            /* [class ~= "클래스명"] : 해당 클래스명을 포함한 모든 객체에 스타일 적용 */
+            border-radius: 50%;
+        }
+        
+        div[class |= "box1"] {
+            /* box1이거나 box1-로 시작하는 */
+            color : red;
+            font-size: 30px;
+        }
+
+        div[class ^= "box1"] {
+            /* box1으로 시작하는 */
+            font-weight: bold;
+        }
+
+        div[class *= "shadow"] {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+        box1
+    </div>
+    <div class="box1 shadow1">
+        box2-1
+    </div>
+    <div class="box1 shadow2">
+        box2-2
+    </div>
+    <div class="box2">
+        box3
+    </div> 
+</body>
+</html>
