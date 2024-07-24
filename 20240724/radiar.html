@@ -4,8 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .r-grad01 {
+            /* background: radial-gradient(circle, orange, lightpink, aqua); */
+            /* background: radial-gradient(circle at 30% 30%, orange, lightpink, aqua); */
+            /* background: radial-gradient(circle, orange, lightpink 30%, aqua 70%); */
+            background: repeating-radial-gradient(circle, orange, lightpink, aqua 20%);
+            display: inline-block;
+        }
+        .r-grad02 {
+            background: radial-gradient(circle closest-side at 30% 40%, orange, lightpink, aqua);
+        }
+        .r-grad03 {
+            background: radial-gradient(circle closest-corner at 30% 40%, orange, lightpink, aqua);
+            display: inline-block;
+        }
+        .r-grad04 {
+            background: radial-gradient(circle farthest-side at 30% 40%, orange, lightpink, aqua);
+            display: inline-block;
+        }
+        .r-grad05 {
+            background: radial-gradient(circle farthest-corner at 30% 40%, orange, lightpink, aqua);
+            display: inline-block;
+        }
+    </style>
 </head>
 <body>
-    
+    <div class="box r-grad01">r-grad01</div>
+    <div class="box r-grad02">r-grad02</div>
+    <div class="box r-grad03">r-grad03</div>
+    <div class="box r-grad04">r-grad04</div>
+    <div class="box r-grad05">r-grad05</div>
 </body>
 </html>

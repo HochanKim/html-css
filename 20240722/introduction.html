@@ -123,7 +123,7 @@
             <div id="time"></div>
             <div id="detail">
                 <p>Incheon, Korea</p>
-                <p>ghckskim@naver.com</p>                                 
+                <p>ghckskim@gmail.com</p>                                 
             </div>
             <div id="sns">
                 <h2>SNS</h2>
@@ -188,7 +188,7 @@
                           <td>졸업</td>
                       </tr>
                       <tr id="high-school">
-                          <td>인천 가림고등학교</td>
+                          <td>더좋은고등학교</td>
                           <td> - </td>
                           <td>2009.3 ~ 2012.2</td>
                           <td>졸업</td>
@@ -223,9 +223,11 @@
     setInterval(
         () => {
             var time = new Date();
-            var timeobj = document.querySelector("#time");
+            var clock = document.querySelector("#time");
             // timeobj.innerHTML = time.toLocaleTimeString();
-            var datetime = time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds(0);
-            timeobj.innerHTML = datetime;
+            var hours = String(time.getHours()).padStart(2, "0");   // padStart(문자의 길이, 첫 인덱스 시작 문자)는 문자열의 표기 방식을 교체하는 함수(메소드)
+            var minutes = String(time.getMinutes()).padStart(2, "0");
+            var seconds = String(time.getSeconds(0)).padStart(2, "0");
+            clock.innerHTML = hours + ":" + minutes + ":" + seconds;
         }, 1000);
 </script>

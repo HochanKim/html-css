@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    .box {
+        width:150px;
+        height:150px;
+        border:1px solid #eee;
+        display: inline-block;
+        margin:40px;
+        background-color: bisque;
+        transition: 1s;
+    }
+    #box1:hover {
+        transform: rotate(40deg);
+    }
+    #box2:hover {
+        transform: rotate(-30deg);
+    }
+    #box3:hover {
+        transform: rotateX(60deg);
+    }
+    #box4:hover {
+        transform: rotate3d(2, 1, -1, 60deg);
+    }
+    #box5:hover {
+        transform: skew(20deg);
+    }
+    #box6:hover {
+        transform: scaleX(2);
+    }
+    .per {
+        perspective: 300px;   /* 원근감 */
+    }
+    </style>
+</head>
+<body>
+    <div class="box" id="box1"></div>
+    <div class="box" id="box2"></div>
+    <div class="per">
+        <div class="box" id="box3"></div>
+    </div>
+    <div class="box" id="box4"></div>
+    <div class="box" id="box5"></div>
+    <div class="box" id="box6"></div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width:150px;
+            height:150px;
+            border:1px solid #eee;
+            display: inline-block;
+            margin:40px;
+            background-color: bisque;
+            /* transition: 1s; */
+            /* animation-name: ani2;
+            animation-duration: 3s;
+            animation-delay: 1s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease; */
+            animation: ani2 2s infinite linear;     /* animation : 이름 시간 횟수 속도*/
+        }
+
+        .box2 {
+            width:150px;
+            height:150px;
+            border:1px solid #eee;
+            display: inline-block;
+            margin:40px;
+            background-color: bisque;
+            animation: ani3 2s infinite linear;
+        }
+        @keyframes ani1 {
+        }
+
+        @keyframes ani2 {
+            0% {
+                transform: perspective(0deg) ;
+            }
+            50% {
+                transform: rotate(180deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes ani3 {
+            0% {
+                transform: perspective(100px) rotateX(0deg) rotateY(0deg);
+                background-color: red;
+            }
+            50% {
+                transform: perspective(100px) rotateX(180deg) rotateY(0deg);
+                background-color: green;
+            }
+            100% {
+                transform: perspective(100px) rotateX(180deg) rotateY(180deg);
+                background-color: blue;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <div class="box2"></div>
+</body>
+</html>
