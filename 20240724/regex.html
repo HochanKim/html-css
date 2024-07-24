@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+ 
+    </style>
+</head>
+<body>
+    <div>
+        <input type="text" placeholder="휴대폰 번호 숫자만 입력" id="phone">
+    </div>
+    <div>
+        <button onclick="fnJoin()">가입</button>
+    </div>
+</body>
+</html>
+<script>    
+    function fnJoin() {
+        var regex = /^[0-9]*$/; // 숫자만 체크
+        var phone = document.querySelector("#phone").value;
+        if(regex.test(phone)){
+            alert("문자없음");
+        } else {
+            alert("문자있음");
+        }
+    }
+</script>

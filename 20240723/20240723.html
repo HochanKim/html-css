@@ -58,22 +58,21 @@
     </style>
 </head>
 <body>
-    <!-- <h1>회원가입을 환영합니다.</h1> -->
-    <form action="">
+    <form id="signup">
         <fieldset>
             <legend>로그인 정보</legend>
             <ul>
                 <li>
                     아이디 
-                    <input type="text" class="right-txt">
+                    <input type="text" class="right-txt" id="userid" name="userid">
                 </li>
                 <li>
                     비밀번호 
-                    <input type="password" class="right-txt">
+                    <input type="password" class="right-txt" id="pwd1">
                 </li>
                 <li>
                     비밀번호 확인 
-                    <input type="password" class="right-txt">
+                    <input type="password" class="right-txt" id="pwd2">
                 </li>
                 <li class="unjoin">
                     <span>회원 등급</span>
@@ -86,7 +85,7 @@
             <ul>
                 <li>
                     이름
-                    <input type="text" placeholder="5자미만 공백없이" class="right-txt">
+                    <input type="text" placeholder="5자미만 공백없이" class="right-txt" id="name" name="name">
                 </li>
                 <li>
                     메일 주소 
@@ -99,11 +98,49 @@
             </ul>
         </fieldset>
         <div class="btn">
-            <input type="submit" value="제출" id="submit">
+            <button onclick="fnJoin()" id="submit">제출</button>
         </div>
     </form>
 </body>
 </html>
-<script>
-    
+<!-- 자바 스크립트 영역 -->
+<script>    
+    // 함수 선언
+    function fnJoin() {
+        // 1) 아이디, 이름, 비밀번호, 비밀번호 확인이 빈 값일 경우 '아이디(이름, 비밀번호)를 입력해주세요' 알림창 출력
+        // 아이디
+        var userid = document.querySelector("#userid").value;   // input의 value값 가져오기
+        if(userid == "") {
+            alert("아이디를 입력하세요");
+            return;     // js 함수 빠져나가기
+        }
+
+        // 비밀번호
+        var pwd1 = document.querySelector("#pwd1").value;
+        var pwd2 = document.querySelector("#pwd2").value;
+        if(pwd1 == "") {
+            alert("비밀번호를 입력하세요");
+            return;
+        }
+        if(pwd1.length <= 5) {  // js의 길이표현 => 객체.length
+            // 2) 비밀번호가 5글자 이하일 경우 '비밀번호는 6글자 이상 입력해주세요' 알림창 출력
+            alert("비밀번호는 6글자 이상 입력해주세요");
+            return;
+        }
+        if(pwd1 != pwd2) {
+            // 3) '비밀번호'의 입력 값과 '비밀번호 확인' 값이 다를 경우 '비밀번호의 값이 서로 다릅니다' 알림창 출력
+            alert("비밀번호의 값이 서로 다릅니다");
+            return;
+        }
+
+        // 이름
+        var name = document.querySelector("#name").value;
+        if(name == "") {
+            alert("이름을 입력하세요");
+            return;
+        }
+
+        // 가입완료
+        alert("가입되었습니다.");
+    }
 </script>

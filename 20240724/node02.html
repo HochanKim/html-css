@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .input {
+            margin-bottom: 30px;
+        }
+        table {
+            border : 1px solid #000; /*border : width style color*/
+            border-collapse: collapse;
+        }
+        td, th {
+            padding: 20px 30px;
+            /* padding: 5px 10px 15px 20px; => padding : 상 좌 하 우*/
+            text-align: center;
+            border : 1px solid #000; /*border : width style color*/
+        }
+    </style>
+</head>
+<body>
+    <div class="input">
+        <input type="text" id="row">행
+        <input type="text" id="column">열
+        <button onclick="fncreateElement()">생성</button>
+    </div>
+    <div id="contents"></div>
+</body>
+</html>
+<script>
+    function fncreateElement() {
+        var trow = document.getElementById("row").value;
+        var tcolumn = document.getElementById("column").value;
+
+        // 테이블 생성
+        var table = document.createElement("table");
+        for(var i=0; i<trow; i++){
+            // tr 만들기
+            var Row = document.createElement("tr");
+            for(var j=0; j<tcolumn; j++){
+                // td 만들기
+                var Col = document.createElement("td");
+                Row.appendChild(Col);
+                Col.innerHTML = i+","+j;
+            }
+            table.appendChild(Row);
+        }
+
+        var list = document.querySelector("#contents");
+        list.appendChild(table);
+    }
+</script>

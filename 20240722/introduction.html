@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko">
 <head>
-	<title>온라인 프로필</title>
+	<title>자기소개 페이지</title>
 	<meta charset="utf-8">
   <style>
     /* 기본 스타일 */
@@ -41,14 +41,14 @@
        font-size:30px;
     }
     #namecard {
-       margin: 20px 20px 100px 20px;
+       margin: 20px 20px 40px 20px;
     }
     .pic img {
        display: inline-block;
        width:200px;
        height:340px;
     }
-    #detail, #sns {
+    #detail, #sns, #time {
        margin:auto 20px;
     }
     #sns {
@@ -63,6 +63,17 @@
         transition: 0.3s;
         background-color: yellow;
         border-radius: 20px;
+    }
+    #time {
+        margin-bottom:30px;
+        font-size:20px;
+        background-color: #333;
+        color:#fff;
+        width:160px;
+        height:32px;
+        line-height: 30px;
+        border-radius: 10px;
+        text-align: center;
     }
 
     /* 메인 섹션 */
@@ -89,6 +100,12 @@
     .subtitle {
        padding-left:45px;
     }
+    .hover {
+        font-weight: bold;
+        background-color: olive;
+        color:#fff;
+        transition : all 0.5s;
+    }
   </style>
 </head>
 
@@ -98,11 +115,12 @@
         <aside>
             <div id="namecard">
                 <div class="pic">
-                    <img src="../20240718/images/flower.jpg" alt="">
+                    <img src="../20240718/images/flower.jpg" alt="" id="profile-img01">
                 </div>
                 <h1><span>k</span>im <span>h</span>ochan</h1>    
                 <p>프로그래밍 재밌다</p>
             </div>
+            <div id="time"></div>
             <div id="detail">
                 <p>Incheon, Korea</p>
                 <p>ghckskim@naver.com</p>                                 
@@ -169,8 +187,8 @@
                           <td>2010.3 ~ 2013.2</td>
                           <td>졸업</td>
                       </tr>
-                      <tr>
-                          <td>인천 꽤좋은고등학교</td>
+                      <tr id="high-school">
+                          <td>인천 가림고등학교</td>
                           <td> - </td>
                           <td>2009.3 ~ 2012.2</td>
                           <td>졸업</td>
@@ -182,3 +200,32 @@
     </div>
 </body>
 </html>
+<script>
+    var change = document.querySelector("#profile-img01");
+    change.addEventListener("mouseover", () => {
+        change.src = "../20240718/images/technology.jpg"
+    });
+    var change = document.querySelector("#profile-img01");
+    change.addEventListener("mouseout", () => {
+        change.src = "../20240718/images/flower.jpg"
+    });
+
+    var open = document.querySelector("#high-school");
+    open.addEventListener("mouseover", () => {
+        open.classList.add('hover');
+    })
+
+    var open = document.querySelector("#high-school");
+    open.addEventListener("mouseout", () => {
+        open.classList.remove('hover');
+    })
+
+    setInterval(
+        () => {
+            var time = new Date();
+            var timeobj = document.querySelector("#time");
+            // timeobj.innerHTML = time.toLocaleTimeString();
+            var datetime = time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds(0);
+            timeobj.innerHTML = datetime;
+        }, 1000);
+</script>

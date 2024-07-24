@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <button onclick="fnAppend()">appendChild</button>
+        <button onclick="fnBefore()">insertBefore</button>
+        <button onclick="fnCreate()">createElement</button>
+        <button onclick="fnCreAttr()">createAttribute</button>
+        <button onclick="fnremoveChild()">removeChild</button>
+        <button onclick="fnremoveAttribute()">removeAttribute</button>
+        <button onclick="fnClone()">clone</button>
+    </div>
+    <h3 id="js">자바스크립트</h3>
+    <div id="list">
+        <p>자바</p>
+        <p id="oracle" style="color:blue">오라클</p>
+        <p>html</p>
+
+    </div>
+</body>
+</html>
+<script>
+    function fnAppend(){
+        var list = document.querySelector("#list");
+        var item = document.getElementById("js");
+        list.appendChild(item);     // 객체 list에 자식요소로 추가하겠다는 함수 => appendChild(추가하고자 하는 객체)
+    }
+
+    function fnBefore(){
+        var list = document.querySelector("#list");
+        var item = document.getElementById("js");
+        var oracle = document.getElementById("oracle");
+        list.insertBefore(item, oracle);    // 객체 oracle 앞에 추가하기
+    }
+
+    function fnCreate(){
+        var list = document.querySelector("#list");
+        var jQuery = document.createElement("p");   // p태그로 추가
+        jQuery.innerHTML = "jQuery";  
+        list.appendChild(jQuery);       // 객체 list에서 원하는 자식요소 자리에 추가
+    }
+
+    function fnCreAttr(){
+        var list = document.querySelector("#list");
+        var jQuery = document.createElement("p");
+        jQuery.innerHTML = "jQuery"; 
+
+        var attr = document.createAttribute("style");   // 객체 attr에 style 속성 부여
+        attr.value = "color:red; font-weight:bold;"
+        jQuery.setAttributeNode(attr); // '<p style="color:red; font-weight:bold">jQuery</p>'
+        
+        list.appendChild(jQuery);      
+    }
+
+    function fnremoveChild(){
+        var list = document.querySelector("#list");
+        var item = document.getElementById("oracle");
+        list.removeChild(item);
+    }
+
+    function fnremoveAttribute(){
+        var item = document.getElementById("oracle");
+        item.removeAttribute("style");  // style 속성 제거
+    }
+
+    function fnClone(){
+        var list = document.querySelector("#list");
+        var item = document.getElementById("js");
+        list.appendChild(item.cloneNode("js"));
+    }
+</script>
