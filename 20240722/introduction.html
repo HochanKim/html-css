@@ -42,12 +42,35 @@
     }
     #namecard {
        margin: 20px 20px 40px 20px;
+<<<<<<< HEAD
+=======
+    }
+
+    /* 프로필 사진 */
+    .pic {
+        position: relative;
+        width:200px;
+        height:200px;
+>>>>>>> 3582470f6678736c45214398d2f788a6b3b5820c
     }
     .pic img {
        display: inline-block;
        width:200px;
-       height:340px;
+       height:200px;
+       border-radius: 50%;
+       position: absolute;
     }
+<<<<<<< HEAD
+=======
+    .pic > #profile-img02 {
+        opacity: 0;
+        transition: opacity 1s;
+    }
+    .pic:hover > #profile-img02 {
+        opacity: 1;
+    }
+
+>>>>>>> 3582470f6678736c45214398d2f788a6b3b5820c
     #detail, #sns, #time {
        margin:auto 20px;
     }
@@ -115,7 +138,12 @@
         <aside>
             <div id="namecard">
                 <div class="pic">
+<<<<<<< HEAD
                     <img src="../20240718/images/flower.jpg" alt="" id="profile-img01">
+=======
+                    <img src="../20240718/images/technology.jpg" alt="" id="profile-img01">
+                    <img src="../20240718/images/holiday.jpg" alt="" id="profile-img02">
+>>>>>>> 3582470f6678736c45214398d2f788a6b3b5820c
                 </div>
                 <h1><span>k</span>im <span>h</span>ochan</h1>    
                 <p>프로그래밍 재밌다</p>
@@ -201,6 +229,7 @@
 </body>
 </html>
 <script>
+<<<<<<< HEAD
     var change = document.querySelector("#profile-img01");
     change.addEventListener("mouseover", () => {
         change.src = "../20240718/images/technology.jpg"
@@ -219,6 +248,26 @@
     open.addEventListener("mouseout", () => {
         open.classList.remove('hover');
     })
+=======
+    //var change = document.querySelector("#profile-img01");
+    //change.addEventListener("mouseover", () => {
+    //    change.src = "../20240718/images/holiday.jpg"
+    //});
+    //var change = document.querySelector("#profile-img01");
+    //change.addEventListener("mouseout", () => {
+    //    change.src = "../20240718/images/technology.jpg"
+    //});
+    var open = document.querySelector("#high-school");
+    var text = document.createTextNode('인천 가림고등학교');
+    open.addEventListener("mouseover", () => {
+        open.classList.add('hover');
+        open.insertBefore(text, open.firstChild);
+    });
+    var open = document.querySelector("#high-school");
+    open.addEventListener("mouseout", () => {
+        open.classList.remove('hover');
+    });
+>>>>>>> 3582470f6678736c45214398d2f788a6b3b5820c
 
     setInterval(
         () => {
