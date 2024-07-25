@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-rows: minmax(100px, auto);
+            gap:20px 30px; /* grid=gap : 20px 30px; */
+        }
+        .txt {
+            padding: 10px;
+            background-color: #eee;
+        }
+        .txt:nth-child(odd) {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Veterum propter ergo concursionibus, haeret placatae, approbantibus docere.</div>
+        <div class="txt">Facilis statu suapte fecerint beateque nullam inimicus. Geometria valetudinis sol fecerint debemus epicurei. Ordiamur difficilius facile multis iudicium eam eros vivendo.</div> 
+        <div class="txt">Migrare quiddam assidua maiorem depravate maximis cupiditatum effecerit quaeque officiis quandam. Asperiores tamen habet odia, dicat propemodum primisque causas graviter.</div>
+        <div class="txt">Sentire potitur genus frui tantis, grate prosperum menandri afficit coercendi, utilitatibus. Consecutionem virtus, praestabiliorem iracundia percussit.</div>    
+        <div class="txt">Brevi dixeris improbis primo plusque deteriora futurove. Fugiendam splendido allicit angatur refert perpetuis multavit quoque poena occultum nascuntur.</div>
+    </div>
+</body>
+</html>

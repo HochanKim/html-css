@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mq 테스트</title>
+  <style>
+    * {
+        margin:0;
+        padding:0;
+        box-sizing: border-box;
+    }
+    body {
+        background:rgb(9, 100, 160);
+    }
+
+    img{
+        width: 300px;
+        height: 250px;
+    }
+    #container {
+        width:1140px;
+        margin:50px auto;
+    }    
+    .card {
+        position:relative;
+        float:left;  /* 카드를 가로로 배치 */
+        width:550px;
+        height:250px;
+        margin:10px;
+        border:1px solid #0f0f0f33;
+        background-color:#ffffff;
+    }
+    .words {
+        position:absolute;    
+        left:310px;
+        top:70px;
+        text-align:center;
+        width:200px;          
+    }
+
+    @media screen and (max-width:1200px) {
+        #container {
+          width:500px;
+        }
+
+        .card {
+          position:relative;
+          width:550px;
+          height:250px;
+          margin:10px;
+          border:1px solid #0f0f0f33;
+          background-color:#ffffff;
+          clear: both;
+        }
+    }
+
+    @media screen and (max-width:768px) {
+        #container {
+          width:300px;
+        }
+
+        .card {
+          position:relative;
+          width:300px;
+          height:500px;
+          margin:10px;
+          border:1px solid #0f0f0f33;
+          background-color:#ffffff;
+          clear: both;
+        }
+
+        .words {
+          position:absolute;
+          top:300px;   
+          left:50px;
+          text-align:center;
+          width:200px;          
+        }
+    }
+
+
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div class="card">
+      <img src="../20240718/images/technology.jpg">    
+      <div class="words">
+        <h2>아유... 하기 싫어..</h2>
+        <h3>- 박명수</h3>
+      </div>            
+    </div>
+    <div class="card">
+      <img src="../20240718/images/holiday.jpg">    
+      <div class="words">
+        <h2>그냥 놀고 싶다</h2>
+        <h3>- 박명수</h3>
+      </div>            
+    </div>            
+  </div>
+</body>
+</html>
