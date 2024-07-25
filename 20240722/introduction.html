@@ -231,6 +231,7 @@
     // 대학
     var college = document.querySelectorAll(".ec01");
     college.forEach(innerSchool => {
+        // 객체.forEach() => 자바의 for문과 비슷한 기능, 해당 객체의 자식요소를 모두 검색(특정 자식요소를 선택시 그 자식요소를 가져온다)
         innerSchool.addEventListener("mouseover", () => {
             var coll = innerSchool.querySelector(".college")
             if(coll.innerHTML == "좋은대학교"){
