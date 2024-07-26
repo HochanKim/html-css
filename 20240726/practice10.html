@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        table {
+            border: 1px solid #000;
+            /*border : width style color*/
+            border-collapse: collapse;
+        }
+
+        td,
+        th {
+            padding: 20px 30px;
+            /* padding: 5px 10px 15px 20px; => padding : 상 좌 하 우*/
+            text-align: center;
+            border: 1px solid #000;
+            /*border : width style color*/
+        }
+        #info {
+            font-size:24px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <div>{{name}}</div> vue.js에 선언한 변수 가져오기 '{{return에서 선언한 해당 변수}}' -->
+        <table v-if="!isInfo">
+            <tr>
+                <th>번호</th>
+                <th>이름</th>
+                <th>이메일</th>
+                <th>아이디</th>
+                <th></th>
+            </tr>
+            <tr v-for="(item, index) in list"> <!-- vue.js를 통한 for문 선언 -->
+                <!-- vue.js로 선언한 변수 'list'를 for문에서 생성한 객체 'item'에 넣기 -->
+                <td>{{index + 1}}</td>
+                <td>
+                    <span v-if="index+1 < 6" style="color:blue">{{item.name}}</span>
+                    <span v-else>{{item.name}}</span>
+                </td>
+                <td>{{item.email}}</td>
+                <td>{{item.website}}</td>
+                <td>
+                    <button @click="fnInfo(item)">상세보기</button>
+                    <!-- 일반 js : onclick // vue.js : @click -->
+                </td>
+            </tr>
+        </table>
+        <!-- <div id="info"></div> -->
+        <div v-if="isInfo">
+            <div>이름 : {{info.name}}</div> 
+            <div>이메일 : {{info.email}}</div>
+            <div>
+                <button style="margin-top:20px;" @click="isInfo = false">되돌아가기</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    const app = Vue.createApp({    // vue.js
+        data() {     // 변수선언 부분
+            return {    // 변수 넣는 부분
+                name: "홍길동",
+                list: [],
+                info: [],
+                isInfo: false
+            };
+        },
+        methods: {     // 함수 넣는 부분
+            fnGetList() {
+                $.ajax({
+                    url: "https://jsonplaceholder.typicode.com/users",
+                    dataType: "json",
+                    type: "GET",
+                    data: {},
+                    success: (data) => {
+                        console.log(data);
+                        this.list = data;
+                    }
+                });
+            },
+            fnInfo(item) {
+                var self = this;
+                self.info = item;
+                self.isInfo = !self.isInfo;
+            }
+        },
+        mounted() {     // 가져온 함수 호출
+            this.fnGetList();
+        }
+    });
+    app.mount('#app');
+</script>

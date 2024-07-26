@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <style>
+        table {
+            border : 1px solid #000; /*border : width style color*/
+            border-collapse: collapse;
+        }
+        td, th {
+            padding: 20px 30px;
+            /* padding: 5px 10px 15px 20px; => padding : 상 좌 하 우*/
+            text-align: center;
+            border : 1px solid #000; /*border : width style color*/
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <button id="create" style="margin-bottom : 30px;">생성</button>
+    </div>
+    <div id="contents"></div>
+</body>
+</html>
+<script>
+    // $("#create").on("click", () => {
+    //     $.ajax({
+    //         url : "https://jsonplaceholder.typicode.com/users",
+    //         dataType : "json",
+    //         type : "GET",
+    //         data : {},
+    //         success : function(data){
+    //             var table = document.createElement("table");    // <table></table>
+
+    //             for(var i=0; i<data.length; i++) {
+    //                 var row = document.createElement("tr");
+    //                 row.innerHTML =
+    //                     "<td>" +data[i].id + "</td>"
+    //                     + "<td>" +data[i].name + "</td>"
+    //                     + "<td>" +data[i].email + "</td>"
+    //                     + "<td>" +data[i].website + "</td>"
+    //                 table.appendChild(row);
+    //             }
+    //             var list = document.querySelector("#contents");
+    //             list.appendChild(table);
+    //         }
+    //     });
+    // });
+
+    $("#create").on("click", () => {
+        $.ajax({
+            url:"https://jsonplaceholder.typicode.com/users",
+            dataType:"json",
+            type:"GET",
+            data:{},
+            success:function(data){
+                var table = document.createElement("table");
+
+                // 테이블 생성
+                for(var i=0; i<data.length; i++){
+                    var row = document.createElement("tr");
+                    row.innerHTML
+                    = "<td>"+data[i].id+"</td>"
+                        + "<td>"+data[i].name+"</td>"
+                        + "<td>"+data[i].email+"</td>"
+                        + "<td>"+data[i].website+"</td>"
+                    table.appendChild(row);
+                }
+                var contents = document.querySelector("#contents");
+                contents.appendChild(table);
+            }
+        });
+    })
+    
+</script>
