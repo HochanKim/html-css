@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 제이쿼리는 외부 라이브러리, 반드시 연결을 해서 실행 -->
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <style>
+        img {
+            width:600px;
+            height:400px;
+        }
+    </style>
+</head>
+<body>
+    <img src="../20240718/images/holiday.jpg">
+    <div>
+        <button id="btn">클릭</button>
+    </div>
+</body>
+</html>
+<script>
+    $("#btn").on("click", () => {
+        $("img").attr("src", "../20240718/images/back03.jpg");
+    });
+</script>

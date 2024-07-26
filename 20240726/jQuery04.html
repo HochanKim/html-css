@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <style>
+        img {
+            width:300px;
+            height:450px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <label>
+        <input type="checkbox" checked><span>자바</span>
+    </label><br>
+    <label>
+        <input type="checkbox"><span>오라클</span>
+    </label><br>
+    <label>
+        <input type="checkbox"><span>html/css</span>
+    </label><br>
+    <label>
+        <input type="checkbox"><span>javascript</span>
+    </label><br><br>
+    <div>
+        <button id="btn">클릭</button>
+    </div>
+    <hr>
+    <label>
+        <input type="radio" name="subject" value="java" checked><span>자바</span>
+    </label><br>
+    <label>
+        <input type="radio" name="subject" value="oracle"><span>오라클</span>
+    </label><br>
+    <label>
+        <input type="radio" name="subject" value="html"><span>html/css</span>
+    </label><br>
+    <label>
+        <input type="radio" name="subject" value="jq"><span>jQuery</span>
+    </label><br><br>
+    <div>
+        <button id="btn2">클릭</button>
+    </div>
+    <hr>
+    <img src="" alt="이미지">
+</body>
+</html>
+<script>
+    $("#btn").on("click", ()=>{
+        $(":checked").next().css("color", "red");   // 가져온 태그의 다음 태그(자식요소)를 의미하는 메소드 'next()'
+    });
+
+    $("#btn2").on("click", ()=>{
+        // $("input[name = 'subject']:checked").next().css("color", "red");   // 가져온 태그에 부여된 'name' 속성만 적용
+        var subject = $("input[name = 'subject']:checked").val();
+        var img = $("img");
+
+        img.css("display", "inline");
+        if (subject == "java") {
+            img.attr("src", "../20240718/images/javabook.jfif")
+        } else if (subject == "oracle") {
+            img.attr("src", "../20240718/images/oracle.jpg")
+        } else if (subject == "html") {
+            img.attr("src", "../20240718/images/html-css.jpg")
+        } else if (subject == "jq") {
+            img.attr("src", "../20240718/images/jquery.jpg")
+        }
+    });
+</script>

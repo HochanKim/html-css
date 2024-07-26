@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- jQuery 직접 연결 -->
+    <script src="../js/jquery-3.7.1.min.js"></script>
+     <!-- jQuery CDN 연결 -->
+    <!-- <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script> -->
+</head>
+<body>
+    <div id="text">첫번째 jquery</div>
+</body>
+</html>
+<script>
+    // 자바스크립트
+    // var text = document.getElementById("text");
+    // text.innerHTML = "바꿨다!"
+
+    // 제이쿼리
+    // jQuery("#text").html("ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ");    // jQuery(html태그, html에서 설정한 아이디 가져오기) = $(html에서 설정한 아이디 가져오기)
+    // $("#text").html("오늘 금요일이다!");
+    
+    // 제이쿼리 문법으로 이벤트 넣기
+    $("#text").on("click", function(){
+        $("#text").css("color", "red");                 // 해당 속성을 함수로 불러와 파라미터를 넣기
+        $("#text").css("border", "1px solid #ccc");   
+        $("#text").css("backgroundColor", "#eee");      // "background-color"같은 속성은 캐멀표기법으로 사용   
+    });        // 'on()'에다 활성화할 이벤트 넣기
+</script>

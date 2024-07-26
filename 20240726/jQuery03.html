@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <ul>
+        <li>자바</li>
+        <li>오라클</li>
+        <li><span>html/css</span></li>
+        <li>javascript</li>
+        <li>jquery</li>
+    </ul>
+    <div>
+        <button id="btn">클릭</button>
+    </div>
+</body>
+</html>
+<script>
+    $("#btn").on("click", () => {
+        // $("li").css("color", "red");
+        // $("li:eq(0)").css("color", "red");          // 'eq(인덱스 번호 : 몇 번째)' => $("해당태그:eq(인덱스번호)")'
+        // $("li:gt(2)").css("color", "red");          // 'gt(역순으로 몇 개 태그)' => $("해당태그:gt(번호)")'
+        // $("li:lt(2)").css("color", "red");          // 'gt(앞에서 몇 개 태그)' => $("해당태그:lt(번호)")'
+        // $("li:even").css("color", "red");               // 홀수 위치의 태그들 (인덱스 번호가 적용되지 않음) 
+        // $("li:odd").css("color", "blue");               // 짝수 위치의 태그들 (인덱스 번호가 적용되지 않음) 
+        // $("li:has(span)").css("color", "blue");     // 부모태그에 담긴 자식태그를 설정 => $("부모태그:has(자식태그)")
+        // $("li:first").css("color", "red"); 
+        // $("li:last").css("color", "blue"); 
+    });
+</script>
