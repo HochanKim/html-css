@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!-- vue.js 복습 -->
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app"> 
+        <div>{{name}}</div>
+        <div>
+            <!-- 클릭 이벤트
+             일반 js : onclick 
+             vue.js : @click
+             -->
+            <input type="text" placeholder="이름 입력" v-model="newName">
+            <button @click="fnChangeName()">이름 변경</button>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <div v-if="isAge">{{age}}</div>
+        <div>
+            <button @click="fnViewAge()">
+                <span v-if="!isAge">나이 보이게 하기</span>
+                <span v-else>나이 감추기</span>
+            </button>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    const app = Vue.createApp({
+            data() {
+                return {
+                    // 변수 영역, ex) name : '홍길동', age : 20
+                    name : '홍길동', 
+                    age : 20,
+                    newName : "",    // input의 value를 저장하는 변수
+                    isAge : false,
+                    txt : "나이 보이게 하기"
+                };
+            },
+            methods: {
+               // 메소드 영역 
+               fnChangeName(){
+                    // vue.js에서는 자바와 마찬가지로 변수명 앞에 'this'를 붙임
+                    this.name = this.newName;
+                    this.newName = "";
+               },   // 메소드 영역에서는 ','로 구분지어야 한다.
+               fnViewAge(){
+                    this.isAge = !this.isAge;
+                }
+            },
+            mounted() {
+                // 처음 시작할 때 실행되는 부분
+            }
+        });
+        app.mount('#app');
+</script>

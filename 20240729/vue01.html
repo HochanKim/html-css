@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app"> 
+        <input type="text" placeholder="나이를 입력하세요." v-model="newAge">
+        <div>
+            <button @click="fnOpenAge()">확인</button>
+        </div>
+        <template v-if="isView">
+            <!-- <div v-if="age >= 0 && age < 10">10세 미만입니다.</div>
+            <div v-else-if="age >= 10 && age < 20">10세 이상입니다.</div>
+            <div v-else-if="age >= 20 && age < 30">20세 이상입니다.</div>
+            <div v-else>30세 이상입니다.</div> -->
+            <div v-if="age >= 30">30세 이상입니다.</div>
+            <div v-else-if="age >= 20">20세 이상입니다.</div>
+            <div v-else-if="age >= 10">10세 이상입니다.</div>
+            <div v-else>10세 미만입니다.</div>
+            <hr>
+            <div v-if="age >= 20 && age < 30">20대 입니다.</div>
+        </template>
+    </div>
+</body>
+</html>
+<script>
+    const app = Vue.createApp({
+            data() {
+                return {
+                    // 변수 영역, ex) name : '홍길동', age : 20
+                    age : 0,
+                    newAge : 0,
+                    isView : false
+                };
+            },
+            methods: {
+               // 메소드 영역 
+                fnOpenAge(){
+                    this.age = this.newAge;
+                    this.isView = !this.isView;
+                }
+            },
+            mounted() {
+                // 처음 시작할 때 실행되는 부분
+            }
+        });
+        app.mount('#app');
+</script>
