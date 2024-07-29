@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        .btn {
+            background-color : rgb(39, 185, 39);
+            color : white;
+            padding : 15px;
+            font-size: 15px;
+            border : none;
+            cursor : pointer;
+
+        }
+        .menu {
+            background-color: #f9f9f9;
+            width: 150px;
+            box-shadow: 1px 3px 8px 3px #e7e3e3;
+            display: none;
+            
+        }
+        .menu a {
+            display: block;
+            padding : 10px;
+        }
+        .top-menu {
+            display: inline-block;
+            height: 200px;
+        }
+        .top-menu:hover .menu{
+            display: block;
+        }
+        .menu a:hover{
+            background-color: #ccc;
+        }
+        a:link, a:visited {
+            text-decoration: none;
+            color : black;
+        }
+        img {
+            width:400px;
+            height:300px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"> 
+        <div class="top-menu">
+            <button class="btn">Dropdown</button>
+            <div class="menu">
+                <!-- <a href="javascript:;" @click="fnOpen1()">이미지 1</a>
+                <a href="javascript:;" @click="fnOpen2()">이미지 2</a>
+                <a href="javascript:;" @click="fnOpen3()">아무내용 3</a> -->
+                <a href="javascript:;" @click="fnMenu(1)">이미지 1</a>
+                <a href="javascript:;" @click="fnMenu(2)">이미지 2</a>
+                <a href="javascript:;" @click="fnMenu(3)">아무내용 3</a>
+            </div>
+        </div>
+        <!-- <div v-if="isView1">
+            <img src="../20240718/images/back-image.jpg" alt="">
+        </div>
+        <div v-if="isView2">
+            <img src="../20240718/images/back01.jpg" alt="">
+        </div>
+        <template v-if="isView3">
+            <p>공약이 것 느낌은 교섭에, 지자체가 역사와 이월과 해 있다. 형식에서 발표하려 빙수기를 파격적에 선거가 가한다. <br>
+                입시에서 최대가 실무에, 것 단말기는 통일에 아침에서 있다. 모은 여신까지 그렇어야 표에서 발생하지 넘치다. <br>
+                "자원은 환경이나, 매일 정책의 비례하다" "건설은 낮을 재산을 라면이 어떻어 주문이 2024년 앞둔 많다" "안 다른 간 나서어 갖은 전진하다" <br>
+                도리어 시작될 발병에 2022년 세례로부터 부동산은 경쟁적, 타당하다. <br>
+                의원과 지난해를 정신이 수용되면 해명을 첫째로 주민이다 토론의 있은, 따르느냐.</p>
+        </template> -->
+        <div v-if="menu == 1">
+            <img src="../20240718/images/back-image.jpg" alt="">
+        </div>
+        <div v-if="menu == 2">
+            <img src="../20240718/images/back01.jpg" alt="">
+        </div>
+        <div v-if="menu == 3">
+            <p>공약이 것 느낌은 교섭에, 지자체가 역사와 이월과 해 있다. 형식에서 발표하려 빙수기를 파격적에 선거가 가한다.</p>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    const app = Vue.createApp({
+            data() {
+                return {
+                    // 변수 영역, ex) name : '홍길동', age : 20
+                    // isView1 : false,
+                    // isView2 : false,
+                    // isView3 : false,
+                    menu : ""   // 조건의 변수
+                };
+            },
+            methods: {
+               // 메소드 영역 
+            //    fnOpen1(){
+            //         this.isView1 = !this.isView1;
+            //         this.isView2 = false;
+            //         this.isView3 = false;
+            //    },
+            //    fnOpen2(){
+            //         this.isView1 = false;
+            //         this.isView2 = !this.isView2;
+            //         this.isView3 = false;
+            //    },
+            //    fnOpen3(){
+            //         this.isView1 = false;
+            //         this.isView2 = false;
+            //         this.isView3 = !this.isView3;
+            //    }
+            fnMenu(menu){
+                this.menu = menu;   // 함수에서 보낸 파라미터를 변수 'menu'에 대입
+            }
+            },
+            mounted() {
+                // 처음 시작할 때 실행되는 부분
+            }
+        });
+        app.mount('#app');
+</script>

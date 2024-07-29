@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <meta charset="EUC-KR">
+    <title>Insert title here</title>
+    <style>
+        table {
+            border : 1px solid #000; /*border : width style color*/
+            border-collapse: collapse;
+        }
+        td, th {
+            padding: 20px 30px;
+            /* padding: 5px 10px 15px 20px; => padding : 상 좌 하 우*/
+            text-align: center;
+            border : 1px solid #000; /*border : width style color*/
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <input type="text" placeholder="검색어" v-model="keyword">
+    <button @click="fnGetList">검색</button>
+    <table id="table">
+        <tr>
+            <th>학번</th>
+            <th>이름</th>
+            <th>학과</th>
+            <th>학년</th>
+            <th>성별</th>
+        </tr>
+        <tr v-for="item in list">
+            <td>{{item.STU_NO}}</td>
+            <td>{{item.STU_NAME}}</td>
+            <td>{{item.STU_DEPT}}</td>
+            <td>{{item.STU_GRADE}}</td>
+            <td>
+                <span v-if="item.STU_GENDER == 'M'">남자</span>
+                <span v-else>여자</span>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                // 가져온 DB를 담을 변수
+                list : [],
+                keyword : ""
+            };
+        },
+        methods: {
+            fnGetList(){
+                var self = this;
+                $.ajax({
+                    url : "http://localhost:3000/list?keyword=" + self.keyword,
+                    dataType : "json",
+                    type : "GET",
+                    data : {},
+                    success : function(data){
+                        self.list = data;   // 변수 list에 data(가져온 DB) 담기
+                    }
+                });
+            },
+            // fnSearch(){
+            //     var self = this;
+            //     $.ajax({
+            //         url : "http://localhost:3000/search?id=" + self.stuNo,
+            //         dataType : "json",
+            //         type : "GET",
+            //         data : {},
+            //         success : function(data){
+            //             self.list = data;  
+            //         }
+            //     });
+            // }
+        },
+        mounted() { // 처음 화면이 실행될때 호출할 부분
+            this.fnGetList();   // 최초 테이블 목록을 가져오기
+        }
+    });
+    app.mount('#app');
+</script>
+</body>
+</html>
