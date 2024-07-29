@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        table,
+        tr,
+        td,
+        th {
+            border: 1px solid;
+            text-align: center;
+            border-collapse: collapse;
+        }
+
+        tr,
+        td,
+        th {
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <table>
+            <tr>
+                <th>이름</th>
+                <th>나이</th>
+                <th>주소</th>
+            </tr>
+            <tr v-for="item in userList">
+                <!-- <template v-if="item.age >= 30"> -->
+                <td>
+                    <span v-if="item.age>=30" style="color:blue">{{item.name}}</span>
+                    <span v-else>{{item.name}}</span>
+                </td>           
+                <td>{{item.age}}</td>
+                <td>{{item.addr}}</td>
+                <!-- </template> -->
+            </tr>
+        </table>
+        <hr>
+        <button @click="fnList">클릭!</button>
+        <div v-for="item in list">{{item}}</div>
+        <hr>
+        <div v-for="(item, index) in list">{{index+1}}. {{item}}</div>
+        <hr>
+        <div v-for="item in userList">{{item.name}}</div>
+
+        
+    </div>
+</body>
+</html>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                // 변수 영역, ex) name : '홍길동', age : 20
+                list : ["자바", "오라클", "html/css", "javascript"],
+                userList : [
+                    {name : "홍길동", age : 20, addr : "인천"},
+                    {name : "김철수", age : 30, addr : "서울"},
+                    {name : "박영희", age : 25, addr : "부산"},
+                    {name : "박명수", age : 40, addr : "제주도"} 
+                ],
+                isAge : true
+            };
+        },
+        methods: {
+            // 메소드 영역 
+            fnList(){
+                for(var i=0; i<this.list.length; i++){
+                    alert(this.list[i]);
+                }
+            },
+        },
+        mounted() {
+            // 처음 시작할 때 실행되는 부분
+        }
+    });
+    app.mount('#app');
+</script>
