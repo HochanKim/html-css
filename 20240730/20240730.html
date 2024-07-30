@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #ddd;
+        }
+        #app {
+            width:32%;
+            height:800px;
+            border:1px solid #eee;
+            background-color: #fff;
+            margin:40px auto;
+            box-sizing: border-box;
+            padding:10px 20px;
+        }
+        .input-area {
+            width:100%;
+        }
+        .input-area p, .label {
+            margin-left:10px;
+        }
+        .input-area > input, select {
+            width:95%;
+            height:30px;
+            margin:0 auto;
+            display: block;
+        }
+        .input-area .label {
+           display: block;
+           margin-top:30px;
+        }
+        .input-area button {
+            width:100%;
+            height: 50px;
+            background-color: dodgerblue;
+            color: #fff;
+            margin: 30px auto;
+            font-size: 20px;
+            border: 0;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>학생 추가</h1>
+        <div class="input-area">
+            <p>학번</p>
+            <input type="text" v-model="stuNo">
+            <p>이름</p>
+            <input type="text" v-model="stuName">
+            <p>학과</p>
+            <input type="text" v-model="stuDept">
+            <p>학년</p>
+            <select v-model="stuGrade">
+                <option value="">학년을 선택하세요</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+            <div class="label">
+                <input type="radio" name="gender" value="M" v-model="stuGender"><span>남자</span>
+                <input type="radio" name="gender" value="F" v-model="stuGender"><span>여자</span>
+            </div>
+            <button @click="fnSubmit" @keyup.enter="fnSubmit">제출</button>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    const app = Vue.createApp({
+            data() {
+                return {
+                    // 변수 영역, ex) name : '홍길동', age : 20
+                    stuNo : "",
+                    stuName : "",
+                    stuDept : "",
+                    stuGrade : "",
+                    stuGender : ""
+                };
+            },
+            methods: {
+               // 메소드 영역
+               fnSubmit(){
+                if(!confirm(`새로운 학생 정보를 제출하겠습니까?`)){
+                    return;
+                }
+                 var url = `http://localhost:3000/submit?stuNo=${this.stuNo}&stuName=${this.stuName}&stuDept=${this.stuDept}&stuGrade=${this.stuGrade}&stuGender=${this.stuGender}`;
+                 $.ajax({
+                     url : url,
+                     dataType : "json",
+                     type : "GET",
+                     data : {},
+                     success : function(data){
+                         console.log(data);
+                         alert(data.message);
+                     }
+                 });
+               }
+            },
+            mounted() {
+                // 처음 시작할 때 실행되는 부분
+            }
+        });
+        app.mount('#app');
+</script>
