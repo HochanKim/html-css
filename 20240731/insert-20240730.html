@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>학생 추가</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        #app {
+            margin : 100px auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            padding: 20px;
+            width: 350px;
+            max-width: 100%;
+        }
+        h1 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #333333;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #555555;
+        }
+        .form-group input,
+        .form-group select {
+            width: 95%;
+            padding: 12px;
+            border: 1px solid #cccccc;
+            border-radius: 6px;
+            font-size: 16px;
+            color: #333333;
+            box-sizing: border-box;
+        }
+        .gender-group {
+            display: flex;
+            align-items: center;
+            margin : 20px 0px;
+        }
+        .btn {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            padding: 12px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>학생 추가</h1>
+        <div class="form-group">
+            <label>학번
+                <input v-if="!isCheck" type="text" v-model="info.stuNo">
+                <input v-else type="text" v-model="info.stuNo" disabled>
+            </label>
+            <button @click="fnIdCheck(stuNo)">중복체크</button>
+        </div>
+        <div class="form-group">
+            <label>이름<input type="text" v-model="info.stuName"></label>
+        </div>
+        <div class="form-group">
+            <label >학과<input type="text" v-model="info.stuDept"></label>
+        </div>
+        <div class="form-group">
+            <label>학년
+                <select v-model="info.stuGrade">
+                    <option value="">학년을 선택하세요</option>
+                    <option value="1">1학년</option>
+                    <option value="2">2학년</option>
+                    <option value="3">3학년</option>
+                </select>
+            </label>
+        </div>
+
+        <div class="gender-group">
+            <label><input type="radio" value="M" v-model="info.stuGender">남자</label>
+            <label><input type="radio" value="F" v-model="info.stuGender">여자</label>
+        </div>
+
+
+        <button class="btn" @click="fnSubmit">제출</button>
+    </div>
+</body>
+</html>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                // stuNo : "",
+                isCheck : false,
+                info : {    // 맵 'info' 생성
+                    stuNo : "",
+                    stuName : "",
+                    stuDept : "",
+                    stuGrade : "",
+                    stuGender : ""
+                }
+            };
+        },
+        methods: {
+            fnIdCheck(){
+                var self = this;
+                if(self.info.stuNo.length != 8){
+                    alert("학번은 8글자!");
+                    return;
+                }
+                var url = `http://localhost:3000/idCheck?stuNo=${this.info.stuNo}`
+                $.ajax({
+                    url: url,
+                    dataType: "json",
+                    type: "GET",
+                    data: {},
+                    success: function (data) {
+                        console.log(data);
+                        console.log(data[0].CNT);
+                        if(data[0].CNT > 0){
+                            alert("이미 사용중인 아이디!");                         
+                        } else {
+                            alert("사용가능한 아이디!");
+                            self.isCheck = true;
+                        }
+                    }
+                });
+            },
+            fnSubmit(){
+                var self = this;
+                $.ajax({
+                    // url: `http://localhost:3000/insert?stuNo=${this.stuNo}&stuName=${this.stuName}&stuDept=${this.stuDept}&stuGrade=${this.stuGrade}&stuGender=${this.stuGender}`,
+                    url: "http://localhost:3000/insert",
+                    dataType: "json",
+                    type: "POST",
+                    data: JSON.stringify(self.info),     // 기능적인 이유로 JSON 형태로 컨버트
+                    contentType : "application/json",   // 'type'을 "POST"로 선언하여 'contentType'을 추가
+                    success: function (data) {
+                        if(self.info == ""){
+                            alert("해당 내용을 모두 입력해주세요");
+                            return;
+                        }
+                        alert(data.message);
+                    }
+                });
+            }
+        },
+        mounted() {
+
+        }
+    });
+    app.mount('#app');
+</script>

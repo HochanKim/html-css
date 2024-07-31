@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app"> 
+        <input type="text" placeholder="학번" v-model="info.stuNo">
+        <input type="text" placeholder="이름" v-model="info.stuName">
+        <input type="text" placeholder="학과" v-model="info.stuDept">
+        <button @click="fnInsert">추가</button>
+    </div>
+</body>
+</html>
+<script>
+    const app = Vue.createApp({
+            data() {
+                return {
+                    // 변수 영역, ex) name : '홍길동', age : 20
+                    info : {
+                        stuNo : "",
+                        stuName : "",
+                        stuDept : ""
+                    }
+                };
+            },
+            methods: {
+               // 메소드 영역 
+               fnInsert(){
+                var self = this;
+                if(self.info.stuNo.length == 0 || self.info.stuName == "" || self.info.stuDept == ""){
+                    alert("내용을 입력해주세요");
+                    return;
+                } 
+                if(self.info.stuNo.length != 8){
+                    alert("학번은 8글자 입니다");
+                    return;
+                }
+                    $.ajax({
+                        url : `http://localhost:3000/newinfo`,
+                        dataType : "json",
+                        type : "POST",
+                        data : JSON.stringify(self.info),
+                        contentType : "application/json",
+                        success : function(data){
+                           alert(data.msg);
+                           console.log(data);
+                        }
+                    });
+               }
+            },
+            mounted() {
+                // 처음 시작할 때 실행되는 부분
+            }
+        });
+        app.mount('#app');
+</script>

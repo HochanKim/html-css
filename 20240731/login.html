@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <meta charset="EUC-KR">
+    <title>Insert title here</title>
+    <style>
+    </style>
+</head>
+<body>
+<div id="app">
+    <div>
+        <p>아이디 : <input type="text" placeholder="아이디" v-model="user.id"></p>
+    </div>
+    <div>
+        <p>비밀번호 : <input type="password" placeholder="비밀번호" v-model="user.pwd"></p>
+    </div>
+    <div>
+        <button @click="fnLogin">로그인!</button>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                user : {    // 사용자 정보 맵
+                    id : "",    // 로그인 아이디
+                    pwd : ""    // 로그인 패스워드
+                }
+            };
+        },
+        methods: {
+            fnLogin(){
+                var self = this;
+                $.ajax({
+                    url: "http://localhost:3000/login",
+                    dataType: "json",
+                    type: "POST",
+                    data: JSON.stringify(self.user),     // 기능적인 이유로 JSON 형태로 컨버트
+                    contentType : "application/json",   // 'type'을 "POST"로 선언하여 'contentType'을 추가
+                    success: function (data) {
+                        if(data[0].CNT > 0){
+                            location.href="withNode04.html";
+                        } else {
+                            alert("아이디 혹은 비밀번호를 다시 확인해주세요");
+                        }
+                    }
+                });
+            }
+        },
+        mounted() {
+            
+        }
+    });
+    app.mount('#app');
+</script>

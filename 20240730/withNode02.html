@@ -47,7 +47,13 @@
                     <td><input v-model="item.STU_NAME"></td>
                     <td><input v-model="item.STU_DEPT"></td>
                     <td><input v-model="item.STU_GRADE"></td>
-                    <td><input v-model="item.STU_GENDER"></td>
+                    <!-- <td><input v-model="item.STU_GENDER"></td> -->
+                    <td>
+                        <select v-model="item.STU_GENDER">
+                            <option value="F">F</option>
+                            <option value="M">M</option>
+                        </select>
+                    </td>
                     <td><button @click="fnInput(item)">저장</button></td>
                 </template>
                 <template v-else>            

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>회원가입</h1>
+        <div>
+            <p>아이디</p>
+            <input type="text" name="id" v-model="collection.memId">
+            <button @click="fnSame" v-model="isSame">중복체크</button>
+        </div>
+        <div>
+            <p>비밀번호</p>
+            <input type="password" name="pwd" v-model="collection.memPwd">
+        </div>
+        <div>
+            <p>비밀번호 확인</p>
+            <input type="password" name="pwdcheck" v-model="pwdCheck">
+        </div>
+        <div>
+            <p>이름</p>
+            <input type="text" name="username" v-model="collection.memName">
+        </div>
+        <div>
+            <p>이메일</p>
+            <input type="text" name="email" v-model="collection.memEmail">
+        </div>
+        <div>
+            <p>전화번호</p>
+            <input type="text" name="phonenumber" v-model="collection.memPhone">
+        </div>
+        <div>
+            <label>성별</label>
+            <label>
+                남<input type="radio" name="gender" v-model="collection.memGender" value="male">
+            </label>
+            <label>
+                여<input type="radio" name="gender" v-model="collection.memGender" value="female">
+            </label>
+        </div> 
+        <button @click="fnJoin">회원가입</button>
+    </div>
+</body>
+</html>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                collection : {  // 회원가입 페이지에서 기입된 정보들 담는 변수들의 맵
+                    memId : "", 
+                    memPwd : "", 
+                    memName : "",
+                    memEmail : "", 
+                    memPhone : "", 
+                    memGender : ""
+                }, 
+                pwdCheck : "",
+                isSame : "isSame"
+            };
+        },
+        methods: {
+            fnJoin(){
+                var self = this;
+                // 빈값 방지
+                // 아이디
+                if(self.collection.memId == ""){
+                    alert("사용하고자 하는 아이디를 입력하세요");
+                    return;
+                } else if(self.collection.memId.length < 5) {
+                    // 아이디 최소 글자수
+                    alert("아이디는 최소 5글자 이상입니다.");
+                    return;
+                } else if(!self.isSame){
+                    alert("아이디 중복체크를 해주세요");
+                    return;
+                }
+
+                // 비밀번호
+                if(self.collection.memPwd == ""){
+                    alert("비밀번호를 입력하세요");
+                    return;
+                } else if(self.collection.memPwd.length < 6){
+                    // 비밀번호 최소 글자수
+                    alert("비밀번호는 최소 6글자 이상입니다.");
+                    return;
+                } else if (self.pwdCheck != self.collection.memPwd){
+                    alert("입력하신 비밀번호가 맞지 않습니다.")
+                    return;
+                }
+
+                // 이름
+                if(self.collection.memName == ""){
+                    alert("이름을 입력하세요");
+                    return;
+                } 
+
+                // 이메일
+                if(self.collection.memEmail == ""){
+                    alert("이메일을 입력하세요");
+                    return;
+                }
+                
+                // 번호
+                if(self.collection.memPhone == ""){
+                    alert("휴대폰 번호를 입력하세요");
+                    return;
+                }
+
+                // 성별
+                if(self.collection.memGender == ""){
+                    alert("성별을 체크해주세요");
+                    return;
+                }
+
+                $.ajax({
+                    url: "http://localhost:3000/newmember",    // 해당 url을 통해 데이터 전송
+                    dataType: "json",
+                    type: "POST",
+                    data: JSON.stringify(self.collection),     // 기능적인 이유로 JSON 형태로 컨버트
+                    contentType : "application/json",   // 'type'을 "POST"로 선언하여 'contentType'을 추가
+                    success: function (data) {
+                        console.log(data);
+                        alert(data.msg);
+                    }
+                });
+            },
+            fnSame(){
+                // if(data[0].CNT > 0){
+                //     alert(data.msg);
+                // }
+                $.ajax({
+                    url: "http://localhost:3000/idcheck",    // 해당 url을 통해 데이터 전송
+                    dataType: "json",
+                    type: "POST",
+                    data: JSON.stringify(self.collection),     
+                    contentType : "application/json",   
+                    success: function (data) {
+                        console.log(data[0].CNT);
+                        alert("사용할 수 있는 아이디입니다.");
+                    }
+                });
+            }
+        },
+        mounted() {
+            
+        }
+    });
+    app.mount('#app');
+</script>
