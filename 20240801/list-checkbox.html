@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <meta charset="EUC-KR">
+    <title>Insert title here</title>
+    <style>
+        table {
+            border : 1px solid #000; /*border : width style color*/
+            border-collapse: collapse;
+        }
+        td, th {
+            padding: 20px 30px;
+            /* padding: 5px 10px 15px 20px; => padding : 상 좌 하 우*/
+            text-align: center;
+            border : 1px solid #000; /*border : width style color*/
+        }
+        td input {
+            width:70px;
+        }
+        .remove {
+            width:70px;
+            height:40px;
+            margin:30px auto 30px 38%;
+        }
+
+        .sort {
+            display: inline-block;
+            width:485px;
+            margin-top:30px;
+            margin-bottom:20px;
+            text-align: right;
+        }
+        .sort select {
+            margin-left:20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input placeholder="검색어" v-model="keyword" style="margin: 0 20px 20px 0;" @keyup.enter="fnGetList">  <!-- @keyup.enter="(값)" => 엔터키 누를시, "(값)"를 실행하라-->
+        <select style="margin-right:10px;" v-model="stuGrade" @change="fnGetList">  <!-- @change="(값)" => 자동으로 검색 결과를 보여줌 -->
+            <option value="">::전체::</option>
+            <option value="1">::1학년::</option>
+            <option value="2">::2학년::</option>
+            <option value="3">::3학년::</option>
+        </select>
+        <button @click="fnGetList">검색</button>
+        <div class="sort">
+            <label><input type="radio" id=sort1 name="sort" v-model="orderKind" value="ASC" @change="fnGetList">오름차순</label>
+            <label><input type="radio" id=sort2 name="sort" v-model="orderKind" value="DESC" @change="fnGetList">내림차순</label>
+            <select v-model="orderName" @change="fnGetList">
+                <option value="STU_NAME">이름순</option>
+                <option value="STU_NO">학번순</option>
+                <option value="STU_GRADE">학년순</option>
+            </select>
+        </div>
+        <table>
+            <tr>
+                <th><input type="checkbox" @click="fnAllCheck" v-model="isAllCheck"></th>
+                <th>학번</th>
+                <th>이름</th>
+                <th>학과</th>
+                <th>학년</th>
+                <th>성별</th>
+                <th>수정</th>
+            </tr>
+            <tr v-for="(item, index) in list">
+                <template v-if="item.STU_NO == updateStuNo">
+                    <td><input type="radio" name="target"></td>
+                    <td>{{item.STU_NO}}</td>
+                    <td><input v-model="item.STU_NAME"></td>
+                    <td><input v-model="item.STU_DEPT"></td>
+                    <td><input v-model="item.STU_GRADE"></td>
+                    <!-- <td><input v-model="item.STU_GENDER"></td> -->
+                    <td>
+                        <select v-model="item.STU_GENDER">
+                            <option value="F">F</option>
+                            <option value="M">M</option>
+                        </select>
+                    </td>
+                    <td><button @click="fnInput(item)">저장</button></td>
+                </template>
+                <template v-else>
+                    <td><input type="checkbox" @change="isAllCheck = false" :id="'stu-' + index" name="target" :value="item.STU_NO" v-model="selectList"></td>            
+                    <td>
+                        <label :for="'stu-' + index">
+                            {{item.STU_NO}}
+                        </label>
+                    </td>
+                    <td>
+                        <a href="javascript:;" @click="fnInfo(item.STU_NO)">
+                            {{item.STU_NAME}}
+                        </a>
+                    </td>
+                    <td>{{item.STU_DEPT}}</td>
+                    <!-- <td :class="{txt : item.STU_GRADE == 1}">{{item.STU_GRADE}}</td> -->
+                    <td>{{item.STU_GRADE}}</td>     <!-- 삼항연산자 적용 -->
+                    <td>
+                        <span v-if="item.STU_GENDER == 'M'">남자</span>
+                        <span v-else>여자</span>
+                    </td>
+                    <td><button @click="fnUpdate(item.STU_NO)">수정</button></td>
+                </template>
+            </tr>
+        </table>
+        <button @click="fnRemove" class="remove">삭제</button>
+    </div>
+
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                list : [],
+                keyword : "",
+                updateStuNo : "",
+                stuGrade : "",
+                selectItem: "",
+                orderName : "STU_NAME",
+                orderKind : "ASC",
+                selectList : [],
+                defaultList : [],
+                isAllCheck : false
+            };
+        },
+        methods: {
+            fnGetList() {
+                var self = this;
+                $.ajax({
+                    url: `http://localhost:3000/list?keyword=${self.keyword}&grade=${self.stuGrade}&orderName=${self.orderName}&orderKind=${self.orderKind}`,
+                    dataType: "json",
+                    type: "GET",
+                    data: {},
+                    success: function (data) {
+                        console.log(data)
+                        self.list = data;
+                        for(var i=0; i<self.list.length; i++){
+                            self.defaultList.push(self.list[i].STU_NO);
+                        }
+                    }
+                });
+            },
+            fnUpdate(stuNo){
+                console.log(stuNo);
+                this.updateStuNo = stuNo;
+            },
+            
+            fnRemove(){
+                if(!confirm("삭제하시겠습니까?")){
+                    return;
+                };
+                var self = this;
+                var url = `http://localhost:3000/delete?stuNo=${self.selectList}`;
+                $.ajax({
+                    url: url,
+                    dataType: "json",
+                    type: "GET",
+                    data: {},
+                    success: function (data) {
+                        console.log(data);
+                        alert(data[0].message);
+                        self.fnGetList();
+                    }
+                });
+            },
+            fnInput(item){
+                if(!confirm("수정 및 저장하시겠습니까?")){
+                    return;
+                };
+                var self = this;
+                var url = `http://localhost:3000/update?stuNo=${item.STU_NO}
+                &stuName=${item.STU_NAME}&stuDept=${item.STU_DEPT}
+                &stuGrade=${item.STU_GRADE}&stuGender=${item.STU_GENDER}`;
+                $.ajax({
+                    url: url,
+                    dataType: "json",
+                    type: "GET",
+                    data: {},
+                    success: function (data) {
+                        console.log(data);
+                        alert(data[0].message);
+                        self.fnGetList();
+                    }
+                });
+            },
+            fnAllCheck(){
+                var self = this;
+                self.isAllCheck = !self.isAllCheck;
+                if(self.isAllCheck){
+                    self.selectList = self.defaultList;
+                } else {
+                    self.selectList = [];
+                }
+                console.log(self.isAllCheck);
+                console.log(self.selectList);
+            },
+            fnInfo(stuNo){
+                location.href=`info.html?stuNo=${stuNo}`;
+            },
+        },
+        mounted() {
+            // 처음 화면이 실행될때 호출할 부분
+            this.fnGetList();
+        }
+    });
+    app.mount('#app');
+</script>
+</body>
+</html>

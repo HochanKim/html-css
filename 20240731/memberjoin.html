@@ -76,9 +76,6 @@
                     // 아이디 최소 글자수
                     alert("아이디는 최소 5글자 이상입니다.");
                     return;
-                } else if(!self.isSame){
-                    alert("아이디 중복체크를 해주세요");
-                    return;
                 }
 
                 // 비밀번호
@@ -135,7 +132,7 @@
                 //     alert(data.msg);
                 // }
                 $.ajax({
-                    url: "http://localhost:3000/idcheck",    // 해당 url을 통해 데이터 전송
+                    url: "http://localhost:3000/samecheck",    // 해당 url을 통해 데이터 전송
                     dataType: "json",
                     type: "POST",
                     data: JSON.stringify(self.collection),     
