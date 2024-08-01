@@ -74,12 +74,18 @@
     #sns {
        padding-top : 60px;
     }
+    #sns h3 {
+        font-size:16px;
+    }
     #sns h3 a {
+        display: inline-block;
+        width:140px;
+        text-align: center;
         color:crimson;
         text-decoration: none;
     }
     a:hover {
-        font-size: 24px;
+        font-size: 20px;
         transition: 0.3s;
         background-color: yellow;
         border-radius: 20px;
@@ -120,6 +126,9 @@
     .subtitle {
        padding-left:45px;
     }
+    .experience {
+        margin-left:50px;
+    }
     .edu-career:hover {
         font-weight: bold;
         transition : all 0.5s;
@@ -132,6 +141,85 @@
         background-color: olive;
         color:#fff;
     }
+    .job:hover {
+        font-size: 24px;
+        font-weight: bold;
+        transition: 0.5s;
+        background-color: yellow;
+    }
+
+    /* 그래프 */
+    .graph-wrap { 
+        position: relative; 
+        width: 100%; 
+    }
+    .graph-wrap > .p-100 {
+        height:20px;
+    }
+
+    .p-25 {
+        width:25%; 
+        animation:p-25 2s; 
+        background-color: crimson;
+    }
+    .p-45 {width:45%; 
+        animation:p-45 2s; 
+        background-color: orange;
+    }
+    .p-55 {
+        width:55%; 
+        animation:p-55 2s; 
+        background-color: orange;
+    }
+    .p-60 {
+        width:60%; 
+        animation:p-60 2s; 
+        background-color: yellowgreen;
+    }
+    .p-75 {
+        width:75%; 
+        animation:p-75 2s; 
+        background-color: aquamarine;
+    }
+
+    @keyframes p-25 {
+        from {width:0px} 
+        to {width:25%}
+    }
+    @keyframes p-45 {
+        from {width:0px} 
+        to {width:45%}
+    }
+    @keyframes p-55  {
+        from {width:0px}
+        to {width: 55%}
+    }
+    @keyframes p-60  {
+        from {width:0px}
+        to {width: 60%}
+    }
+    @keyframes p-75  {
+        from {width:0px}
+        to {width: 75%}
+    }
+
+    /* 숙련도 */
+    .tech-lists {
+        list-style: none;
+    }
+    .tech-lists li {
+        font-size:20px;
+        margin-bottom:20px;
+    }
+    .tech-lists li::before {
+        content: '';    /* 가상 리스트 아이템의 내용은 비어있음 */
+        display: inline-block;
+        width: 30px; 
+        height: 30px; 
+        background-image: url('../../images/ball-mini.png');
+        background-size: cover; 
+        margin-right: 20px;
+      }
   </style>
 </head>
 
@@ -153,45 +241,59 @@
                 <p>ghckskim@gmail.com</p>                                 
             </div>
             <div id="sns">
-                <h2>SNS</h2>
-                <h3><a href="#https://github.com/HochanKim">Github</a></h3>
+                <h2>둘러보기</h2>
+                <h3><a href="https://github.com/HochanKim/FirstJava_git.git">Java & SQL</a></h3>
+                <h3><a href="https://github.com/HochanKim/html-css.git">html/css/js</a></h3>
             </div>           
         </aside>
         <div id="main">
             <section class="introduce">
                 <h2 class="subtitle">자기소개</h2>
-                <p><mark>프로그래밍</mark>에 관심이 많습니다. <br>현재 열심히 공부하며 코딩 중!</p>
+                <p><span class="job">'개발자'</span>란 직업에 흥미를 갖게됐습니다.</p> 
+                <p>그래서 <mark>프로그래밍</mark>에 관심이 많습니다.</p>
+                <p>현재 열심히 공부하며 코딩 중!</p>
             </section>
 
             <!-- 경력 -->
             <section>
                 <h2 class="subtitle">Experience</h2>
-                <ul>
-                    <li>프론트엔드
-                        <ul>
-                            <li>HTML/CSS/JAVASCRIPT </li>
-                            <li>웹 페이지 잘 만든다 </li>
-                            <li>다 잘함</li> 
-                        </ul>
-                    </li>
-                    <li>백엔드
-                        <ul>
-                            <li>자바 잘함 </li>
-                            <li>오라클 더 잘함</li>
-                        </ul>                        
-                    </li>
-                </ul>             
+                <div class="experience">
+                    <div>
+                        <h4>프론트엔드</h4>
+                        <div class="graph-wrap">
+                            <span>HTML</span>
+                            <div class="p-100 p-75"></div>
+                            <span>CSS</span>
+                            <div class="p-100 p-60"></div>
+                            <span>JavaScript</span>
+                            <div class="p-100 p-25"></div> 
+                        </div>
+                    </div>
+                    <div>
+                        <h4>백엔드</h4>
+                        <div class="graph-wrap">
+                            <span>Java</span>
+                            <div class="p-100 p-45"></div>
+                            <span>SQL(OracleDB, MySQL)</span>
+                            <div class="p-100 p-55"></div>
+                        </div>                        
+                    </div>
+                </div>             
             </section>
 
             <!-- 숙련도 -->
             <section>
                 <h2 class="subtitle">보유 기술</h2>
-                <li style="list-style: none;"> 
-                    <ul>
-                        <li>자바 </li>
-                        <li>오라클</li>
-                    </ul>                        
-                </li>
+                <ul class="tech">
+                    <li style="list-style: none;"> 
+                        <ul class="tech-lists">
+                            <li>자바 (연마중)</li>
+                            <li>오라클 (SQLD 도전)</li>
+                            <li>html/css</li>
+                            <li>js (기초부터 다지기)</li>
+                        </ul>                        
+                    </li>
+                </ul>
             </section>
 
             <!-- 학력 -->
